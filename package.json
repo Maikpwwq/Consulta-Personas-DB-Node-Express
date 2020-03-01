@@ -1,0 +1,46 @@
+{
+  "name": "consulta-personas",
+  "version": "1.0.0",
+  "description": "Esta aplicacion consulta datos de personas almacenados",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "12.16.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^7.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^5.3.1",
+    "mailgun-js": "^0.22.0",
+    "mongoose": "^5.9.2",
+    "nodemailer": "^4.6.8"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maikpwwq/Consulta-Personas-DB-Node-Express.git"
+  },
+  "keywords": [
+    "Consulta",
+    "Registros",
+    "Almacenados"
+  ],
+  "author": {
+    "name": "Michael Arias",
+    "email": "Mariasf@correo.udistrital.edu.co"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Maikpwwq/Consulta-Personas-DB-Node-Express/issues"
+  },
+  "homepage": "https://github.com/Maikpwwq/Consulta-Personas-DB-Node-Express#readme"
+}
