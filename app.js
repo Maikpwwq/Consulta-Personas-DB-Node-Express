@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 app.enable('trust proxy');
 // CSS
-import './styles/site.css';
+import "./styles/site.css";
 //
 import Consulta from './src/consultas/consulta';
 import EnviarCorreo from './src/correos/enviarCorreo';
@@ -82,9 +82,11 @@ function onListening() {
 }
 
 // implementacion de Rutas 
+// Metodos HTTP: GET-POST-PUT-HEAD-DELETEPATCH-OPTIONS
 // Get rutas
 router.get('/', (req, res) => {
-    res.render('app.js');
+    res.render('index.html');
+    res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 router.get('/consulta', (req, res) => {
@@ -124,15 +126,18 @@ router.post('/api/personas', async (req, res) => {
         cedula: req.body.cedula
     });
 
+    const resultado = new Resultado({
+        edad: req.persona.edad,
+        genero: req.persona.genero,
+        ciudadResidencia: req.persona.ciudadResidencia,
+        fechaNacimiento: req.persona.fechaNacimiento
+    });
+
     try {
-        const datos = await post.find(persona)([
-            edad: req.edad,
-            genero: req.genero,
-            ciudadResidencia: req.ciudadResidencia,
-            fechaNacimiento: req.fechaNacimiento
-        ]);
+        const datos = await post.find(persona);        
         res.json();
         res.send(datos);
+        res.send(resultado);
     }
     catch (err) {
         res.json({ mensaje: err });

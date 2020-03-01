@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon start.js"
   },
   "engines": {
     "node": "12.16.1"
@@ -13,6 +13,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.3",
+    "core-js": "^3.6.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "dotenv": "^7.0.0",
@@ -23,6 +24,18 @@
     "nodemailer": "^4.6.8"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/register": "7.8.6",
+    "babel-eslint": "^10.0.3",
+    "babel-plugin-macros": "^2.8.0",
+    "babel-plugin-polished": "1.1.0",
+    "babel-plugin-styled-components": "^1.10.7",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "eslint": "^6.8.0",
     "nodemon": "^1.18.10"
   },
   "repository": {
@@ -34,10 +47,7 @@
     "Registros",
     "Almacenados"
   ],
-  "author": {
-    "name": "Michael Arias",
-    "email": "Mariasf@correo.udistrital.edu.co"
-  },
+  "author": "Michael Arias <Mariasf@correo.udistrital.edu.co>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Maikpwwq/Consulta-Personas-DB-Node-Express/issues"
