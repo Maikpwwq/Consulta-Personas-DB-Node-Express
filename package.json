@@ -2,10 +2,10 @@
   "name": "consulta-personas",
   "version": "1.0.0",
   "description": "Esta aplicacion consulta datos de personas almacenados",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
   "engines": {
     "node": "12.16.1"
