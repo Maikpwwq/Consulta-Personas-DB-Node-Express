@@ -3,12 +3,18 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 app.enable('trust proxy');
+
 // CSS
-import "./styles/site.css";
+// import Stylo from ('./styles/site.css');
+const Stylo = require('./styles/site.css');
+
 //
-import Consulta from './src/consultas/consulta';
-import EnviarCorreo from './src/correos/enviarCorreo';
-// const enviarCorreo = require('./src/correos/enviarCorreo');
+// import Consulta from './src/consultas/consulta.ejs';
+// import EnviarCorreo from './src/correos/enviarCorreo.ejs';
+const enviarCorreo = require('./src/correos/enviarCorreo');
+const Consulta = require('./src/consultas/consulta.ejs');
+
+
 // importar dependencies
 const router = express.Router();
 const cors = require('cors');
@@ -17,7 +23,8 @@ const cookieParser = require('cookie-parser');
 const nodeMailer = require('nodemailer');
 const debug = require('debug')('email-sender:server');
 const http = require('http');
-// consultar post datos 
+
+// consultar post datos
 const rateLimit = require('express-rate-limit');
 const logger = require('morgan');
 const limiter = rateLimit({
@@ -43,12 +50,11 @@ app.use('/api/personas', usersRoute);
 const port = process.env.PORT || 3000; // 8081
 const server = http.createServer(app);
 
-app.listen(port, () => {
-    // submit(e => { e.preventDefault();
-    console.log(`Servidor activo en el puerto http://localhost:%s ${port}`);
+server.listen(port, () => {
+        // submit(e => { e.preventDefault();
+        console.log(`Servidor activo en el puerto http://localhost:%s ${port}`);
 });
 
-server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
@@ -90,11 +96,11 @@ router.get('/', (req, res) => {
 });
 
 router.get('/consulta', (req, res) => {
-    res.render('consulta.js');
+    res.render('consulta.ejs');
 });
 
 router.get('/enviarCorreo', (req, res) => {
-    res.render('enviarCorreo.js');
+    res.render('correos/enviarCorreo.ejs');
 });
 
 // Get uno 
@@ -102,18 +108,31 @@ router.get('/:id', (req, res) => {
     res.sendStatus(200);
 });
 
-
 // Creando uno
-router.post('/', async (req, res) => {
+router.post('/consulta', async (req, res) => {
     const consulta = new Consulta({
         nombre: req.body.nombre,
         apellido: req.body.apellido,
         cedula: req.body.cedula
     });
 
+    const resultado = new Resultado({
+        edad: req.datos.persona.edad,
+        genero: req.datos.persona.genero,
+        ciudadResidencia: req.datos.persona.ciudadResidencia,
+        fechaNacimiento: req.datos.persona.fechaNacimiento
+    });
+
     try {
         const newConsulta = await consulta.save();
         res.status(201).json(newConsulta);
+        res.render(resultado);
+        const datos = await post.find(consulta);
+        res.json();
+        res.send(datos);
+        res.writeHead(301, { Location: 'consulta.html' });
+        res.end();
+		res.render('consultas/fichaConsulta.ejs');
     } catch (err) {
         res.status(400).json({ mensaje: err.menssage });
     }
@@ -123,21 +142,17 @@ router.post('/api/personas', async (req, res) => {
     const persona = new Persona({
         nombre: req.body.nombre,
         apellido: req.body.apellido,
-        cedula: req.body.cedula
-    });
-
-    const resultado = new Resultado({
-        edad: req.persona.edad,
-        genero: req.persona.genero,
-        ciudadResidencia: req.persona.ciudadResidencia,
-        fechaNacimiento: req.persona.fechaNacimiento
+        cedula: req.body.cedula,
+        edad: req.body.edad,
+        genero: req.body.genero,
+        ciudadResidencia: req.body.ciudadResidencia,
+        fechaNacimiento: req.body.fechaNacimiento
     });
 
     try {
         const datos = await post.find(persona);        
         res.json();
         res.send(datos);
-        res.send(resultado);
     }
     catch (err) {
         res.json({ mensaje: err });
@@ -150,7 +165,7 @@ router.post('/api/email',
 );
 
 // Generar mensaje de Email
-app.post('/enviarCorreo', function (req, res) {
+router.post('/enviarCorreo', function (req, res) {
     let transporter = nodeMailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,
@@ -183,22 +198,25 @@ router.patch('/:id', (req, res) => {
 
 });
 
-class App {
+const App = () => {
+   
+    // render() {
 
-    
+        document.getElementById('root');
 
-    render() {
-
-        return (
-            <div>
-                <Consulta />
-                <EnviarCorreo />
-            </div>
-            // document.getElementById('root')
+        return (           
+		<body class="container">
+		  <Consulta />
+          <EnviarCorreo />
+          <header>
+               <% include ./src/consultas/consulta %>
+	           <% include ./src/correos/enviarCorreo %>
+          </header>
+        </body>               
+            
         );
-    }
+    // }
 }
-
 
 //
 module.exports = { App, app, router };

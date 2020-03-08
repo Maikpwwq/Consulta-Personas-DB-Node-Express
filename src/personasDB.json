@@ -1,11 +1,11 @@
 {
   "PersonasDb" : {
       "DataPersonas": {
-          "Persona1":            
+          "Persona1":             
                 {
-                    "_id": "1",
+                    "PersonaID": "1",
                     "index": 0,
-                    "name": "Anderson",
+                    "nombre": "Anderson",
                     "apellido": "Mora",
                     "cedula": "1245367842",
                     "edad": "33",
@@ -15,9 +15,9 @@
                 },
           "Persona2":
                 {
-                    "_id": "2",
+                    "PersonaID": "2",
                     "index": 1,
-                    "name": "Daniela",
+                    "nombre": "Daniela",
                     "apellido": "Bejarano",
                     "cedula": "1045377153",
                     "edad": "23",
@@ -27,9 +27,9 @@
                 },
           "Persona3":
                 {
-                    "_id": "3",
+                    "PersonaID": "3",
                     "index": 2,
-                    "name": "Cristian",
+                    "nombre": "Cristian",
                     "apellido": "Usaquen",
                     "cedula": "1031362941",
                     "edad": "29",
@@ -39,9 +39,9 @@
                 },
           "Persona4":
                 {
-                    "_id": "4",
+                    "PersonaID": "4",
                     "index": 3,
-                    "name": "Lucy",
+                    "nombre": "Lucy",
                     "apellido": "Gutierrez",
                     "cedula": "1014237531",
                     "edad": "23",
@@ -51,9 +51,9 @@
                 },
           "Persona5":
                 {
-                    "_id": "5",
+                    "PersonaID": "5",
                     "index": 4,
-                    "name": "David",
+                    "nombre": "David",
                     "apellido": "Blanco",
                     "cedula": "1025267452",
                     "edad": "35",

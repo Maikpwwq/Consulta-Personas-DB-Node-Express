@@ -2,15 +2,17 @@
   "name": "consulta-personas",
   "version": "1.0.0",
   "description": "Esta aplicacion consulta datos de personas almacenados",
-  "main": "app.js",
+  "main": "start.ejs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon start.js"
+    "start": "nodemon start.ejs"
   },
   "engines": {
     "node": "12.16.1"
   },
   "dependencies": {
+    "acorn": "^7.1.1",
+    "ajv": "^6.12.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.3",
     "core-js": "^3.6.4",
@@ -18,6 +20,7 @@
     "debug": "~2.6.9",
     "dotenv": "^7.0.0",
     "ejs": "^3.0.1",
+    "ejs-lint": "^1.0.1",
     "express": "^4.17.1",
     "express-validator": "^5.3.1",
     "mailgun-js": "^0.22.0",
@@ -34,9 +37,9 @@
     "babel-eslint": "^10.0.3",
     "babel-plugin-macros": "^2.8.0",
     "babel-plugin-polished": "1.1.0",
-    "babel-plugin-styled-components": "^1.10.7",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "eslint": "^6.8.0",
+    "eslint-plugin-ejs": "0.0.2",
     "nodemon": "^1.18.10"
   },
   "repository": {

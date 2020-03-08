@@ -1,0 +1,119 @@
+    <!doctype html>
+<html lang="en">
+<body>
+    <section>
+        <div class="container" id="fichaConsulta">
+
+            <div class="row" style="display:flex">
+                <div class="col-md-12 offset-md-5">
+                    <h3>La persona esta registrada con los Siguientes datos</h3>
+                    <div class="form-area">
+
+						<form role="form" action="/fichaConsulta" method="post">
+							<br style="clear:both" />
+							<p>
+								Registro
+							</p>
+							<br />
+							<div class="form-group">
+								<label>
+									Nombre de la Persona consultada:
+								</label>
+								<br />
+								<input type="text"
+									   class="form-control"
+									   id="nombre"
+									   name="nombre"
+									   placeholder="${PersonaID.nombre}"
+									   required />
+							</div>
+							<div class="form-group">
+								<label>
+									Apellido de la persona consultada:
+								</label><br />
+								<input type="text"
+									   class="form-control"
+									   id="apellido"
+									   name="apellido"
+									   placeholder="${PersonaID.apellido}"
+									   required />
+							</div>
+							<div class="form-group">
+								<label>
+									Cedula de la persona consultada:
+								</label><br />
+								<input type="number"
+									   class="form-control"
+									   id="cedula"
+									   name="cedula"
+									   placeholder="${PersonaID.numeroCedula}"
+									   required />
+							</div>
+							<br />
+							<div class="form-group">
+								<label>
+									Edad de la persona consultada:
+								</label><br />
+								<input type="number"
+									   class="form-control"
+									   id="edad"
+									   name="edad"
+									   placeholder="${PersonaID.edad}"
+									   required />
+							</div>
+							<br />
+							<div class="form-group">
+								<label>
+									Genero de la persona consultada:
+								</label><br />
+								<input type="text"
+									   class="form-control"
+									   id="genero"
+									   name="genero"
+									   placeholder="${PersonaID.genero}"
+									   required />
+							</div>
+							<br />
+							<div class="form-group">
+								<label>
+									Ciudad de Residencia de la persona consultada:
+								</label><br />
+								<input type="text"
+									   class="form-control"
+									   id="ciudadResidencia"
+									   name="ciudadResidencia"
+									   placeholder="${PersonaID.ciudadResidencia}"
+									   required />
+							</div>
+							<br />
+							<div class="form-group">
+								<label>
+									Fecha de Nacimiento de la persona consultada:
+								</label><br />
+								<input type="text"
+									   class="form-control"
+									   id="fechaNacimiento"
+									   name="fechaNacimiento"
+									   placeholder="${PersonaID.fechaNacimiento}"
+									   required />
+							</div>
+							<br />
+							<div class="text-center">
+								<button type="submit"
+										id="limpiar"
+										name="limpiar"
+										class="btn btn-primary pull-right btn-submit"
+										onclick="">
+									Limpiar
+								</button>
+							</div>
+
+						</form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</body>
+</html>

@@ -1,6 +1,7 @@
 //  Consultar datos de las personas en la base de datos
-const { getSecret } = require('../config');
+const getSecret = require('../config.ejs');
 const mongoose = require('mongoose');
+const personasDB import ('personasDB.json');
 
 // DB cargue de la data
 const MongoClient = require('mongoose').MongoClient;
@@ -16,20 +17,30 @@ client.connect(err => {
 }).then(() => {
     console.log('Connected to mongoDB');
 },
-    (err) => console.log('Error connecting to mongoDB', err)
+    (err) => 
+	console.log('Error connecting to mongoDB', err)
+	
 );
 
+// Mientras se accede a la DB
 PersonasDB.on('error', (error) =>
-    console.error(error)
-)
+	console.error.bind(error, "error en la conexion")
+);
 
-PersonasDB.once('open', () =>
-    console.log('conectado con Mongo database')
-)
+// Una vez esta corriendo la DB
+PersonasDB.once('open', function () {
+	console.log("ha conectado con Mongo database correctamente...");
+
+	DataPersonas.find().exec(function (error, res) {
+		if (res.length === 0) {
+			DataPersonas.create({ personasDB });			
+		}
+	});
+});
 
 // Estructura Base de datos 
 var PersonaSchema = new mongoose.Schema({
-    name: {
+    nombre: {
         type: String,
         required: true
     },
@@ -41,41 +52,26 @@ var PersonaSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    edad: Number,
+    edad: {
+    	type:Number,
+    	required: false
+    },
     genero: {
         type: String,
-        required: true
+        required: false
     },
     ciudadResidencia: {
         type: String,
-        required: true
+        required: false
     },
     fechaNacimiento: {
         type: Date,
-        required: true,
+        required: false,
         default: Date.now
     }
 });
 
 var DataPersonas = mongoose.model('Persona', PersonaSchema);
-
-// Mientras se accede a la DB
-db.on('error', console.error.bind(console, "error en la conexion"));
-
-// Una vez esta corriendo la DB
-db.once('open', function () {
-    console.log("ha accedido a PersonasDb correctamente...");
-
-    DataPersonas.find().exec(function (error, res) {
-        if (res.length === 0) {
-            DataPersonas.create({ name: "Anderson" });
-            DataPersonas.create({ name: "Daniela" });
-            DataPersonas.create({ name: "Cristian" });
-            DataPersonas.create({ name: "Lucy" });
-            DataPersonas.create({ name: "David" });
-        }
-    });
-});
 
 // Consultar algun resgistro de Persona
 exports.fetch = function (req, res) {
@@ -94,7 +90,7 @@ exports.fetch = function (req, res) {
 // Adicionar un nuevo registro de Persona
 exports.add = function (req, res) {
     var newPersona = {
-        name: req.body.name,
+        nombre: req.body.nombre,
         apellido: req.body.apellido,
         cedula: req.body.cedula,
         edad: req.body.edad,
